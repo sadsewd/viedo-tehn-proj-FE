@@ -17,8 +17,11 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [viewImage, setViewImage] = useState<string>('');
 
-  const handleOpenModal = (img: string) => {
-    setViewImage(img);
+  const handleOpenModal = (img: any) => {
+    const byteArray = new Uint8Array(img.data);
+    const decoder = new TextDecoder('utf-8');
+    const originalBase64 = decoder.decode(byteArray);
+    setViewImage(originalBase64);
     setModalOpen(true);
   };
 
