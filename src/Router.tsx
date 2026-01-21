@@ -127,6 +127,10 @@ export const router = createBrowserRouter([
         path: 'viewData',
         element: <ViewData />,
       },
+      {
+        path:"*",
+        element: <Dashboard />,
+      }
     ],
   },
 ]);
