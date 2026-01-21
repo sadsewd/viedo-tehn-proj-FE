@@ -27,8 +27,9 @@ const ViewData = () => {
   const [viewImage, setViewImage] = useState<string>('');
 
   const handleOpenModal = (bufferObj: any) => {
-    const originalBase64 = Buffer.from(bufferObj.data).toString('utf-8');
-
+    const byteArray = new Uint8Array(bufferObj.data);
+    const decoder = new TextDecoder('utf-8');
+    const originalBase64 = decoder.decode(byteArray);
     setViewImage(originalBase64);
     setModalOpen(true);
   };
