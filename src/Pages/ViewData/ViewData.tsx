@@ -112,6 +112,9 @@ const ViewData = () => {
       headerName: 'Analīzes dati',
       type: 'string',
       width: 200,
+      valueFormatter: (val) => {
+        return JSON.stringify(val);
+      },
     },
     {
       field: 'datums',
