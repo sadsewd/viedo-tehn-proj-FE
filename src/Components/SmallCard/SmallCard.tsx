@@ -6,18 +6,20 @@ const SmallCard = ({
   customColor,
   center,
   onClick,
+  ignoreHeight = false,
 }: {
   children?: ReactNode;
   customColor?: string;
   center?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
+  ignoreHeight?: boolean;
 }) => {
   return (
     <Box
       onClick={onClick}
       sx={{
         display: 'flex',
-        height: '48px',
+        height: ignoreHeight ? 'initial' : '48px',
         borderRadius: 2,
         padding: 1,
         alignItems: 'center',

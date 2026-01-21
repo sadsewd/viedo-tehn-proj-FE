@@ -15,6 +15,7 @@ import ViewData from './Pages/ViewData';
 import Dashboard from './Pages/Dashboard';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useGlobalContext } from './Context/GlobalProvider';
+import AlertModal from './Components/AlertModal';
 export default function Layout() {
   const navigate = useNavigate();
   const { RPIConfig } = useGlobalContext();
@@ -28,7 +29,7 @@ export default function Layout() {
       }}
     >
       <CssBaseline />
-      {RPIConfig == null ? (
+      {RPIConfig == null && false ? (
         <div
           style={{
             width: '100%',
@@ -99,6 +100,7 @@ export default function Layout() {
             }}
           >
             <Outlet />
+            <AlertModal />
           </main>
         </>
       )}
@@ -128,9 +130,9 @@ export const router = createBrowserRouter([
         element: <ViewData />,
       },
       {
-        path:"*",
+        path: '*',
         element: <Dashboard />,
-      }
+      },
     ],
   },
 ]);

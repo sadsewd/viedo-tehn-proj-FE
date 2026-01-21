@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { FormControlLabel, Switch, Typography } from '@mui/material';
 import PageContent from '../../Components/PageContent';
 import PageTitle from '../../Components/PageTitle';
 import { useGlobalContext } from '../../Context/GlobalProvider';
@@ -10,7 +10,7 @@ import SensorsChart from '../../Components/SensortChart';
 import ImageModal from '../../Components/ImageModal';
 
 const Dashboard = () => {
-  const { sensorData } = useGlobalContext();
+  const { sensorData, updateConfig, RPIConfig } = useGlobalContext();
   const { dispatchToast } = useToaster();
   const [eventData, setEventData] = useState<any[]>([]);
   const [data, setData] = useState<any[]>([]);
@@ -148,6 +148,20 @@ const Dashboard = () => {
                   </Typography>
                 </SmallCard>
               </>
+            ) : RPIConfig?.sensorObserve == false ? (
+              <SmallCard ignoreHeight>
+                <div>
+                  <Typography>Novērošana nav ieslēgta</Typography>
+                  <FormControlLabel
+                    control={<Switch />}
+                    label='Sensoru novērošana'
+                    checked={RPIConfig?.sensorObserve}
+                    onChange={(_, checked) =>
+                      updateConfig('sensorObserve', checked)
+                    }
+                  />
+                </div>
+              </SmallCard>
             ) : (
               <SmallCard>
                 <Typography>Nav datu</Typography>
